@@ -4,7 +4,9 @@
 
 	const input = document.getElementsByClassName('new-todo')[0]
 	const todoList =  document.getElementsByClassName('todo-list')[0]
+	const items = document.querySelectorAll('.todo-list li')
 
+	
 	
 	input.addEventListener('keyup', function (e) {
 		
@@ -45,6 +47,18 @@
 		
 	})
 	
+	
+	document.querySelectorAll('.todo-list li').forEach(item => {
+
+		const toggleCheckbox = item.querySelector('input.toggle')
+		toggleCheckbox.addEventListener('click', event =>{
+			
+			const liParent = toggleCheckbox.closest('li')
+			liParent.classList.toggle('completed')
+
+		})
+
+	})
 
 
 
