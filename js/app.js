@@ -34,7 +34,7 @@
 					<label>${string}</label>
 					<button class="destroy"></button>
 				</div>
-				<input class="edit" value="">
+				<input class="edit" value="${string}">
 			`;
 
 			todoList.appendChild(li);
@@ -147,6 +147,39 @@
 
 	
 
+
+	// Edit Task Double click
+
+	items.forEach(item =>{
+
+		item.addEventListener('dblclick', event =>{
+			editTask(item)
+		})
+
+	})
+
+
+	function editTask(item){
+
+		var label = item.querySelector('label');
+
+		var editButton = item.querySelector('.edit')
+		editButton.style.display = 'block'
+		
+		editButton.addEventListener('keyup', function(event){
+
+			label.textContent = this.value
+			if(event.key == 'Enter'){
+
+				this.style.display = 'none';
+
+			}
+			
+		})
+
+		
+
+	}
 
 
 
