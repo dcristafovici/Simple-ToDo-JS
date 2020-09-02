@@ -6,20 +6,15 @@
 	const input = document.getElementsByClassName('new-todo')[0]
 	const todoList =  document.getElementsByClassName('todo-list')[0]
 	const items = document.querySelectorAll('.todo-list li')
-	const notCompletedItems = document.querySelectorAll('.todo-list li:not(.completed)')
-	const completedItems = document.querySelectorAll('.todo-list li.completed')
 	const clear = document.querySelector('.clear-completed')
 	const todoCount = document.querySelector('.todo-count strong')
 	
 	
-	function updateCount(){
-		todoCount.textContent = document.querySelectorAll('.todo-list li:not(.completed)').length;
-	}
-
-	// Initial Item left	
-	updateCount()
+	
 	
 
+
+	// Add new task
 	input.addEventListener('keyup', function (e) {
 		
 		var string = input.value;
@@ -55,7 +50,16 @@
 		
 	})
 	
+
+	function updateCount(){
+		todoCount.textContent = document.querySelectorAll('.todo-list li:not(.completed)').length;
+	}
+
 	
+	updateCount()
+	
+
+	// Toggle Status
 	document.querySelectorAll('.todo-list li').forEach(item => {
 
 		const toggleCheckbox = item.querySelector('input.toggle')
@@ -69,6 +73,7 @@
 
 
 
+	// ToggleTaskStatus
 	function toggleTaskStatusEvent(e){
 		const liParent = e.closest('li')
 		liParent.classList.toggle('completed')
@@ -83,13 +88,11 @@
 
 		})
 
-
-
-
 		
 	})
 
 	
+
 	// FiltersButtons
 	document.querySelectorAll('ul.filters li').forEach(item=>{
 
@@ -98,12 +101,12 @@
 
 			runFilter(event.target)
 
-
 		})
 		
 	})
 
 
+	// Function Filter
 	function runFilter(item){
 
 		const notCompletedItemsFilter  = document.querySelectorAll('.todo-list li:not(.completed)')
@@ -149,7 +152,6 @@
 
 
 	// Edit Task Double click
-
 	items.forEach(item =>{
 
 		item.addEventListener('dblclick', event =>{
@@ -159,6 +161,7 @@
 	})
 
 
+	// Edit Task
 	function editTask(item){
 
 		var label = item.querySelector('label');
@@ -177,9 +180,20 @@
 			
 		})
 
-		
-
 	}
+
+
+	// Function Remove Task
+	items.forEach(item => {
+
+		item.querySelector('.destroy').addEventListener('click',function(event){
+
+			item.remove()
+			updateCount();
+
+		})
+
+	})
 
 
 
